@@ -1,48 +1,41 @@
-# Outline
+# Research Outline
 
 ## Working Title
-The Case for Cognitive Augmentation: Pharmaceutical and Technological Enhancement as a Necessity in the AI Era
+{{YOUR WORKING TITLE}}
+
+## Research Question
+{{What specific question does this work address?}}
+
+## Thesis Statement
+{{One-sentence summary of your central argument or finding.}}
 
 ## I. Introduction
-- The pace of AI advancement
-- The widening gap between human and machine cognition
+- Context and motivation
+- Gap in existing literature
 - Thesis statement
+- Roadmap of the paper
 
-## II. The Current State of AI Capabilities
-- Recent breakthroughs and trajectory
-- Areas where AI already surpasses human performance
-- Projected timelines for further displacement
+## II. Background / Literature Review
+- Key prior work
+- Theoretical framework
+- Definitions and scope
 
-## III. Historical Precedents for Human Augmentation
-- Caffeine, stimulants, and the industrial revolution
-- Nootropics and cognitive enhancers in competitive fields
-- The normalization of pharmacological performance enhancement
+## III. {{SECTION TITLE}}
+- {{Subtopic}}
 
-## IV. Pharmaceutical Cognitive Enhancement
-- Current landscape (modafinil, racetams, amphetamines)
-- Emerging compounds and research directions
-- Ethical considerations and access equity
+## IV. {{SECTION TITLE}}
+- {{Subtopic}}
 
-## V. Non-Pharmaceutical Cognitive Technologies
-- Brain-computer interfaces (Neuralink, etc.)
-- Neurostimulation (tDCS, TMS)
-- Genetic and epigenetic approaches
+## V. Discussion
+- Interpretation of findings
+- Limitations
+- Implications
 
-## VI. The Economic and Social Imperative
-- Labor market disruption by AI
-- Cognitive demands of AI-augmented workplaces
-- The cost of inaction vs. the cost of enhancement
+## VI. Conclusion
+- Summary of contributions
+- Future work
 
-## VII. Ethical, Legal, and Social Implications
-- Equity and access
-- Consent and coercion in competitive environments
-- Regulatory frameworks
-
-## VIII. Counterarguments
-- Risks of cognitive modification
-- Alternative adaptation strategies (education reform, UBI)
-- The "enough" argument — do humans need to compete?
-
-## IX. Conclusion
-- Synthesis
-- Call to action for research, policy, and public discourse
+---
+**Target venue:** {{journal/conference/preprint}}
+**Target length:** {{word count or page count}}
+**Key deadlines:** {{dates}}
