@@ -43,6 +43,7 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 ### Discovery
 - `make search QUERY="topic"` — Search Semantic Scholar, output BibTeX
 - `make search-py QUERY="topic"` — Deeper search with citation counts and years
+- `make search-openalex QUERY="topic"` — Search OpenAlex (250M+ papers, alternative source)
 
 ### Retrieval
 - `make fetch-arxiv ID="2301.00001"` — Download paper from arXiv to sources/
@@ -67,13 +68,26 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 - `make new-note TITLE="Paper Title"` — Create reading note from template in notes/
 - `make search-notes QUERY="keyword"` — Search across all notes
 
+### Writing Quality
+- `make lint` — Lint prose with Vale (passive voice, jargon, hedging, weasel words)
+- `make lint FILE="notes/note.md"` — Lint a specific file
+- `make grammar` — Check grammar and spelling with LanguageTool
+- `make grammar FILE="manuscript/main.md"` — Check a specific file
+- `make readability` — Readability stats: Flesch-Kincaid grade level, fog index, sentence complexity
+
+### Figures & Diagrams
+- `make figure SRC="figures/diagram.mmd"` — Generate PNG from a Mermaid diagram file
+- `make figures` — Generate all Mermaid diagrams in figures/
+- `make plot SRC="figures/chart.gp"` — Run a gnuplot script
+
 ### Writing & Building
-- `make pdf` — Build manuscript → PDF with auto-formatted citations
+- `make pdf` — Build manuscript → PDF with auto-formatted citations and cross-references
 - `make docx` — Build manuscript → Word document
 - `make html` — Build manuscript → HTML
 - `make all` — Build all formats
 - `make wordcount` — Count words in manuscript
 - `make clean` — Remove generated output files
+- `make diff OLD="v1.md" NEW="v2.md"` — Generate track-changes PDF between two versions
 
 ### Utilities
 - `make setup` — Run ./setup.sh to install all tools
@@ -116,6 +130,31 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 1. Run `make bib` first to ensure bibliography is current
 2. Run `make pdf` (or `make docx`, `make html`, `make all`)
 3. Report success and the output file location (output/manuscript.pdf etc.)
+
+### When the user asks to check their writing quality:
+1. Run `make lint` to check prose style (passive voice, jargon, weasel words, hedging)
+2. Run `make grammar` to check grammar and spelling
+3. Run `make readability` to get Flesch-Kincaid grade level and fog index
+4. Summarize the findings: "Your manuscript has 3 style issues and 2 grammar issues. The reading level is grade 14 (appropriate for academic journals)."
+5. Offer to fix the issues directly in the manuscript
+
+### When the user wants to create a figure or diagram:
+1. Ask what kind of diagram they need (flowchart, sequence diagram, chart, plot)
+2. For diagrams: create a `.mmd` file in `figures/` using Mermaid syntax, then `make figure SRC="figures/name.mmd"`
+3. For data plots: create a `.gp` script in `figures/` using gnuplot, then `make plot SRC="figures/name.gp"`
+4. Add the figure to the manuscript: `![Caption](figures/name.png){#fig:label}`
+5. Reference it in text: `As shown in @fig:label, ...`
+
+### When the user asks about cross-references:
+- Figures: `![Caption](path.png){#fig:label}` → reference with `@fig:label`
+- Tables: `Table: Caption {#tbl:label}` → reference with `@tbl:label`
+- Equations: `$$ equation $$ {#eq:label}` → reference with `@eq:label`
+- Sections: `# Section {#sec:label}` → reference with `@sec:label`
+- pandoc-crossref auto-numbers everything during build
+
+### When the user wants to compare drafts or respond to peer review:
+1. For draft comparison: `make diff OLD="manuscript/draft-v1.md" NEW="manuscript/main.md"` → generates track-changes PDF
+2. For peer review: copy `templates/peer-review-response.md` into `manuscript/`, help fill in responses point by point
 
 ## Writing Conventions
 

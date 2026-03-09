@@ -76,6 +76,12 @@ install_system_deps() {
         brew_install pandoc
         brew_install nb
         brew_install zk
+        brew_install vale
+        brew_install languagetool
+        brew_install pandoc-crossref
+        brew_install gnuplot
+        brew_install diction
+        brew_install latexdiff
     else
         info "Updating apt cache..."
         sudo apt-get update -qq
@@ -108,6 +114,40 @@ install_system_deps() {
             fi
         else
             ok "zk already installed"
+        fi
+
+        # vale (prose linter)
+        if ! command -v vale &>/dev/null; then
+            info "Installing vale..."
+            if command -v brew &>/dev/null; then
+                brew_install vale
+            else
+                info "Downloading vale binary..."
+                curl -sfL https://install.goreleaser.com/github.com/errata-ai/vale.sh | sh -s -- -b /usr/local/bin || warn "vale install failed — install manually: https://vale.sh/docs/vale-cli/installation/"
+            fi
+        else
+            ok "vale already installed"
+        fi
+
+        # pandoc-crossref
+        if ! command -v pandoc-crossref &>/dev/null; then
+            if command -v brew &>/dev/null; then
+                brew_install pandoc-crossref
+            else
+                warn "Install pandoc-crossref manually: https://github.com/lierdakil/pandoc-crossref"
+            fi
+        else
+            ok "pandoc-crossref already installed"
+        fi
+
+        apt_install gnuplot
+        apt_install diction
+
+        # latexdiff (usually included with texlive)
+        if ! command -v latexdiff &>/dev/null; then
+            apt_install latexdiff
+        else
+            ok "latexdiff already installed"
         fi
     fi
 }
@@ -152,6 +192,20 @@ install_scite_cli() {
     (cd "$SCITE_CLI_DIR" && npm link --silent 2>/dev/null) || warn "npm link failed (may need sudo on Linux)"
 
     ok "scite-cli set up at ${SCITE_CLI_DIR}"
+}
+
+# ── Install Node-based tools ─────────────────────────────────────────────────
+
+install_node_tools() {
+    header "Node Tools"
+
+    # mermaid-cli (diagram generation)
+    if command -v mmdc &>/dev/null; then
+        ok "mermaid-cli already installed"
+    else
+        info "Installing @mermaid-js/mermaid-cli globally..."
+        npm install -g @mermaid-js/mermaid-cli || warn "mermaid-cli install failed"
+    fi
 }
 
 # ── Create .env from .env.example ────────────────────────────────────────────
@@ -211,8 +265,17 @@ validate_tools() {
     check_tool "pdfminer"         "python3 -c 'import pdfminer'"
     check_tool "papis"            "papis --version"
 
+    # Prose & writing tools
+    check_tool "vale"             "vale --version"
+    check_tool "languagetool"     "command -v languagetool"
+    check_tool "pandoc-crossref"  "pandoc-crossref --version"
+    check_tool "gnuplot"          "gnuplot --version"
+    check_tool "style (diction)"  "command -v style"
+    check_tool "latexdiff"        "latexdiff --version"
+
     # Node-based tools
     check_tool "scite-cli"        "command -v scite"
+    check_tool "mmdc (mermaid)"   "mmdc --version"
 }
 
 print_summary() {
@@ -276,6 +339,7 @@ main() {
     install_system_deps
     install_python_deps
     install_scite_cli
+    install_node_tools
     setup_env_file
     validate_tools
     print_summary

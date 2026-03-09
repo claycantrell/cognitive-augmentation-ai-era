@@ -16,3 +16,6 @@ pdfminer.six
 
 # Reference Management
 papis
+
+# Search (additional sources)
+pyalex

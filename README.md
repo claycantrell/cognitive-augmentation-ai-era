@@ -127,17 +127,22 @@ Once Claude Code is running inside this project, you can say things like:
 - "Has this paper's conclusions been supported by later research?"
 - "Create a reading note for this paper"
 
-### Writing
+### Writing & Editing
 - "Show me my outline"
 - "Draft the introduction section based on my outline and the papers we've collected"
 - "Add a citation to Walker 2017 in the second paragraph"
 - "Rewrite this paragraph to be more concise"
 - "What's my word count?"
+- "Check my writing for grammar and style issues"
+- "How readable is my manuscript? What's the grade level?"
+- "Create a flowchart showing my methodology"
 
-### Publishing
+### Revising & Publishing
 - "Build my paper as a PDF"
 - "Export it as a Word document too"
 - "Change the citation style from APA to Chicago"
+- "Show me what changed between my first and current draft"
+- "Help me write a response to these peer reviewer comments"
 
 ### Project Management
 - "What sources are in my library?"
@@ -234,8 +239,9 @@ Everything Claude does under the hood uses `make` commands. If you prefer to run
 ### Finding Papers
 | What you want to do | Command |
 |---------------------|---------|
-| Search for papers | `make search QUERY="your topic"` |
+| Search Semantic Scholar | `make search QUERY="your topic"` |
 | Deeper search with citation counts | `make search-py QUERY="your topic"` |
+| Search OpenAlex (250M+ papers) | `make search-openalex QUERY="your topic"` |
 
 ### Downloading Papers
 | What you want to do | Command |
@@ -270,6 +276,20 @@ Everything Claude does under the hood uses `make` commands. If you prefer to run
 | Create a reading note | `make new-note TITLE="Paper Title"` |
 | Search notes | `make search-notes QUERY="keyword"` |
 
+### Writing Quality
+| What you want to do | Command |
+|---------------------|---------|
+| Check prose style (passive voice, jargon, etc.) | `make lint` |
+| Check grammar and spelling | `make grammar` |
+| Get readability stats (grade level, fog index) | `make readability` |
+
+### Figures & Diagrams
+| What you want to do | Command |
+|---------------------|---------|
+| Generate a diagram from Mermaid file | `make figure SRC="figures/diagram.mmd"` |
+| Generate all diagrams | `make figures` |
+| Run a gnuplot chart script | `make plot SRC="figures/chart.gp"` |
+
 ### Writing & Building
 | What you want to do | Command |
 |---------------------|---------|
@@ -278,6 +298,7 @@ Everything Claude does under the hood uses `make` commands. If you prefer to run
 | Build HTML | `make html` |
 | Build all formats | `make all` |
 | Word count | `make wordcount` |
+| Compare two drafts (track-changes PDF) | `make diff OLD="v1.md" NEW="v2.md"` |
 
 ### Utilities
 | What you want to do | Command |
@@ -291,11 +312,12 @@ Everything Claude does under the hood uses `make` commands. If you prefer to run
 
 ## The Tools Under the Hood
 
-Claude uses 15+ free CLI tools to do the work. You don't need to know about them, but if you're curious:
+Claude uses 20+ free CLI tools to do the work. You don't need to know about them, but if you're curious:
 
 | What it does | Tool | More info |
 |-------------|------|-----------|
 | Searches 200M+ academic papers | Semantic Scholar | [docs/01-discovery.md](docs/01-discovery.md) |
+| Searches 250M+ papers (alternative) | OpenAlex | [docs/01-discovery.md](docs/01-discovery.md) |
 | Downloads papers from arXiv | arxiv-dl | [docs/02-retrieval.md](docs/02-retrieval.md) |
 | Downloads papers by DOI | doi2pdf | [docs/02-retrieval.md](docs/02-retrieval.md) |
 | Extracts DOIs from PDFs | pdf2doi | [docs/02-retrieval.md](docs/02-retrieval.md) |
@@ -305,6 +327,13 @@ Claude uses 15+ free CLI tools to do the work. You don't need to know about them
 | Manages your reference library | papis | [docs/05-reference-management.md](docs/05-reference-management.md) |
 | Structured note-taking | nb, zk | [docs/06-note-taking.md](docs/06-note-taking.md) |
 | Builds PDF/Word/HTML from Markdown | pandoc | [docs/07-writing-and-publishing.md](docs/07-writing-and-publishing.md) |
+| Checks prose style and tone | Vale | [docs/08-writing-quality.md](docs/08-writing-quality.md) |
+| Checks grammar and spelling | LanguageTool | [docs/08-writing-quality.md](docs/08-writing-quality.md) |
+| Measures readability (grade level) | GNU style | [docs/08-writing-quality.md](docs/08-writing-quality.md) |
+| Generates diagrams from text | Mermaid CLI | [docs/09-figures-and-diagrams.md](docs/09-figures-and-diagrams.md) |
+| Creates scientific charts/plots | gnuplot | [docs/09-figures-and-diagrams.md](docs/09-figures-and-diagrams.md) |
+| Auto-numbers figures/tables/equations | pandoc-crossref | [docs/10-revision-and-review.md](docs/10-revision-and-review.md) |
+| Compares draft versions (track changes) | latexdiff | [docs/10-revision-and-review.md](docs/10-revision-and-review.md) |
 
 ---
 

@@ -19,6 +19,12 @@ tools=(
   pdf2doi
   scite-cli
   arxiv-summarizer
+  vale
+  mmdc
+  gnuplot
+  style
+  latexdiff
+  pandoc-crossref
 )
 
 ready=0

@@ -16,7 +16,7 @@ OUTPUT_DIR    = output
 SOURCES_DIR   = sources
 LIBRARY_DIR   = library
 NOTES_DIR     = notes
-PANDOC_FLAGS  = --citeproc --bibliography=$(BIB_FILE) --csl=$(CSL_FILE) --pdf-engine=xelatex
+PANDOC_FLAGS  = --filter pandoc-crossref --citeproc --bibliography=$(BIB_FILE) --csl=$(CSL_FILE) --pdf-engine=xelatex
 
 # Default target
 .DEFAULT_GOAL := help
@@ -48,6 +48,27 @@ search-py: ## Python-based deeper search via semanticscholar library. Usage: mak
 	    cites = p.citationCount if p.citationCount else 0; \
 	    year  = p.year if p.year else 'N/A'; \
 	    print(f'  [{year}] ({cites} cites) {p.title}'); \
+	print()"
+
+.PHONY: search-openalex
+search-openalex: ## Search OpenAlex (250M+ papers). Usage: make search-openalex QUERY="topic"
+	@if [ -z "$(QUERY)" ]; then \
+		echo "Error: QUERY is required. Usage: make search-openalex QUERY=\"topic\""; \
+		exit 1; \
+	fi
+	@python3 -c "\
+	import pyalex; \
+	from pyalex import Works; \
+	pyalex.config.email = 'user@example.com'; \
+	results = Works().search('$(QUERY)').get(per_page=10); \
+	print(f'\n--- OpenAlex results for: $(QUERY) ---\n'); \
+	for w in results: \
+	    year = w.get('publication_year', 'N/A'); \
+	    cited = w.get('cited_by_count', 0); \
+	    title = w.get('title', 'Untitled'); \
+	    doi = w.get('doi', ''); \
+	    print(f'  [{year}] ({cited} cites) {title}'); \
+	    if doi: print(f'         DOI: {doi}'); \
 	print()"
 
 # ==============================================================================
@@ -226,6 +247,57 @@ search-notes: ## Search notes. Usage: make search-notes QUERY="keyword"
 	@grep -rn "$(QUERY)" $(NOTES_DIR)/ 2>/dev/null || true
 
 # ==============================================================================
+# WRITING QUALITY
+# ==============================================================================
+
+.PHONY: lint
+lint: ## Lint prose with Vale. Usage: make lint [FILE="manuscript/main.md"]
+	@vale $(or $(FILE),$(MANUSCRIPT))
+
+.PHONY: grammar
+grammar: ## Check grammar with LanguageTool. Usage: make grammar [FILE="manuscript/main.md"]
+	@languagetool $(or $(FILE),$(MANUSCRIPT))
+
+.PHONY: readability
+readability: ## Readability stats (Flesch-Kincaid, fog index). Usage: make readability [FILE="manuscript/main.md"]
+	@style $(or $(FILE),$(MANUSCRIPT))
+
+# ==============================================================================
+# FIGURES
+# ==============================================================================
+
+.PHONY: figure
+figure: ## Generate figure from Mermaid file. Usage: make figure SRC="figures/diagram.mmd"
+	@if [ -z "$(SRC)" ]; then \
+		echo "Error: SRC is required. Usage: make figure SRC=\"figures/diagram.mmd\""; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(SRC)" ]; then \
+		echo "Error: File not found: $(SRC)"; \
+		exit 1; \
+	fi
+	mmdc -i "$(SRC)" -o "$(SRC:.mmd=.png)" -b transparent
+	@echo "Generated: $(SRC:.mmd=.png)"
+
+.PHONY: figures
+figures: ## Generate all Mermaid diagrams in figures/
+	@for f in figures/*.mmd; do \
+		if [ -f "$$f" ]; then \
+			echo "Generating: $$f"; \
+			mmdc -i "$$f" -o "$${f%.mmd}.png" -b transparent; \
+		fi; \
+	done
+	@echo "Done."
+
+.PHONY: plot
+plot: ## Run a gnuplot script. Usage: make plot SRC="figures/chart.gp"
+	@if [ -z "$(SRC)" ]; then \
+		echo "Error: SRC is required. Usage: make plot SRC=\"figures/chart.gp\""; \
+		exit 1; \
+	fi
+	gnuplot "$(SRC)"
+
+# ==============================================================================
 # WRITING & BUILDING
 # ==============================================================================
 
@@ -262,6 +334,23 @@ wordcount: ## Count words in manuscript
 clean: ## Remove output/ contents
 	rm -rf $(OUTPUT_DIR)/*
 	@echo "Cleaned $(OUTPUT_DIR)/"
+
+# ==============================================================================
+# VERSION COMPARISON
+# ==============================================================================
+
+.PHONY: diff
+diff: ## Compare two manuscript versions (track-changes PDF). Usage: make diff OLD="v1.md" NEW="v2.md"
+	@if [ -z "$(OLD)" ] || [ -z "$(NEW)" ]; then \
+		echo "Error: OLD and NEW required. Usage: make diff OLD=\"v1.md\" NEW=\"v2.md\""; \
+		exit 1; \
+	fi
+	@mkdir -p $(OUTPUT_DIR)
+	pandoc $(OLD) -o /tmp/scaffold-old.tex
+	pandoc $(NEW) -o /tmp/scaffold-new.tex
+	latexdiff /tmp/scaffold-old.tex /tmp/scaffold-new.tex > /tmp/scaffold-diff.tex
+	pdflatex -output-directory=$(OUTPUT_DIR) /tmp/scaffold-diff.tex
+	@echo "Built: $(OUTPUT_DIR)/scaffold-diff.pdf"
 
 # ==============================================================================
 # UTILITIES
