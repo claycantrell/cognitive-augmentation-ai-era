@@ -13,8 +13,15 @@ Just started — project not yet set up.
 - [ ] V. Discussion
 - [ ] VI. Conclusion
 
+## Word Count
+<!-- Track words drafted against the word budget from the writing plan. -->
+0 of ~_____ budget drafted
+
 ## Sources
 No papers collected yet.
+
+### Still Needed
+<!-- List sources that need to be found, grouped by section. Keep this in sync with search-queue.md. -->
 
 ## Where We Left Off
 New project. User has not started working yet.

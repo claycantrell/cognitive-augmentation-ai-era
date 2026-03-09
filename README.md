@@ -138,12 +138,13 @@ This project automatically tracks every change you make — think of it as an **
 
 Every time you close Claude and come back later, it picks up where you left off. It knows what sections you've drafted, which papers you've found, what decisions you've made, and what you planned to do next.
 
-This works because four files in your project act as Claude's memory:
+This works because five files in your project act as Claude's memory:
 
 - **`outline.md`** — your paper's structure and thesis
-- **`search-queue.md`** — what papers still need to be found, organized by section
-- **`progress.md`** — a checklist of what's done and a note about where you left off
+- **`search-queue.md`** — what papers still need to be found, organized by priority
+- **`progress.md`** — a checklist of what's done, word count against budget, and a note about where you left off
 - **`decisions.md`** — choices you've made along the way (scope, style, focus areas)
+- **`drafts/writing-plan.md`** — section-by-section drafting instructions with word budgets and discipline notes (created once the outline is stable)
 
 Claude updates these automatically as you work. You don't need to touch them — but you can look at them anytime to see the state of your project at a glance.
 
@@ -196,14 +197,14 @@ Once Claude Code is running inside this project, you can say things like:
 | File / Folder | What goes in it | Analogy |
 |--------|----------------|---------|
 | `outline.md` | Your research plan — thesis, sections, structure | Your table of contents |
-| `search-queue.md` | What papers you still need to find, by section | Your library request slips |
+| `search-queue.md` | What papers you still need to find, prioritized by tier | Your library request slips |
 | `progress.md` | What's done, what's not, where you left off | Your to-do list |
 | `decisions.md` | Choices you've made about scope, style, focus | Your research journal |
 | `manuscript/` | Your paper — the actual writing | Your typewriter |
 | `sources/` | Downloaded PDFs of papers you've found | Your file drawer of photocopied articles |
 | `library/` | Organized metadata for each source | Your card catalog |
 | `notes/` | Your reading notes on individual papers | Your note cards |
-| `drafts/` | Working drafts for each section — where argument meets evidence | Your rough drafts pile |
+| `drafts/` | Working drafts for each section, plus the writing plan | Your rough drafts pile |
 | `bibliography/` | Your formatted reference list | Your bibliography cards |
 | `figures/` | Charts, images, diagrams | Your illustration folder |
 | `scratch/` | Brainstorming, rough ideas, discarded material | Your wastebasket (that you can dig through) |
@@ -218,7 +219,7 @@ Once Claude Code is running inside this project, you can say things like:
 Research papers don't go from "I have an idea" to "here's a polished manuscript" in one step. This scaffold breaks the process into four stages, and Claude manages the flow between them:
 
 ```
-outline  →  search queue  →  notes  →  drafts  →  manuscript
+outline  →  search queue  →  notes  →  writing plan  →  drafts  →  manuscript
 ```
 
 ### Stage 1: Create and edit the outline (`outline.md`)
@@ -229,11 +230,32 @@ You start by telling Claude what you want to write about. Together, you build an
 
 Once you know what your paper needs to argue, Claude helps you identify what evidence is missing. For each section of the outline, you figure out: *What kind of paper would support this claim? What keywords would find it?*
 
-These become entries in the search queue — a persistent, organized list of papers you still need to find. Each entry has keywords, alternative search terms, and a description of what kind of evidence you're looking for. Claude works through this queue across sessions: running searches, evaluating results, downloading papers, and marking items as done. You never lose track of where you are in the literature search.
+These become entries in the search queue, organized by priority:
+
+- **P0 — Must have before drafting.** Literature positioning papers (closest neighbors you must cite), core framing sources, and evidence for your most vulnerable claims. These block writing.
+- **P1 — Search while drafting.** Not needed before the first draft. Search when writing a section reveals a gap.
+- **P2 — Only if needed later.** Nice-to-have sources. Don't search until a draft reveals a real need.
+
+The queue also defines a **good-enough-to-draft threshold** — the minimum research needed before you can start writing. This prevents research from becoming an excuse not to write.
+
+Claude works through this queue across sessions: running searches, evaluating results, downloading papers, and marking items as done. You never lose track of where you are in the literature search.
 
 ### Stage 3: Read and summarize (`notes/`)
 
 When Claude finds and downloads a paper, it automatically creates a reading note — one file per paper. This is objective: what does the paper say? Key findings, methodology, data points, direct quotes with page numbers. You don't need to ask for this — it happens whenever Claude downloads or summarizes a source.
+
+### Stage 3.5: Create a writing plan (`drafts/writing-plan.md`)
+
+Once your outline is stable and you've started collecting sources, Claude helps you create a **writing plan** — a section-by-section skeleton that guides the actual drafting. For each section, the writing plan specifies:
+
+- **Word budget** — how many words and paragraphs this section should be
+- **Paragraph-level instructions** — what argumentative job each paragraph does
+- **Discipline notes** — warnings about sprawl, tone drift, or other risks
+- **Key citations needed** — what sources this section requires
+
+The writing plan also maps your paper's **structural spine** — the central distinction or throughline that should recur across sections. This keeps the paper coherent as you draft individual sections.
+
+You don't have to create this all at once. Claude can help you build it section by section as you go.
 
 ### Stage 4: Work through section drafts (`drafts/`)
 
@@ -257,8 +279,9 @@ When a section draft is solid, you move it here, clean it up, and it becomes par
 The biggest risk in research is losing the *reasoning*. You read five papers, see how they connect, have an insight about your argument... and then forget it by next week. This pipeline captures every stage:
 
 - The **outline** captures your structural thinking
-- The **search queue** captures what evidence you still need (and what you've already tried)
+- The **search queue** captures what evidence you still need, prioritized so you research what matters most first
 - The **reading notes** capture what each paper says
+- The **writing plan** captures how long each section should be, what its argumentative job is, and what discipline it needs
 - The **section drafts** capture what the papers *mean together* — your reasoning, while it's fresh
 - The **evidence log** means you never have to re-read a paper just to find where a number came from
 
@@ -291,17 +314,19 @@ When you build your paper, the system automatically:
 A typical project follows this arc:
 
 ```
- 1. Outline       "Help me build an outline for my paper on [topic]"
- 2. Search queue   "What papers do we need for each section? Let's build a search list."
- 3. Search         "Let's work through the search queue — start with Section II"
- 4. Download       "Download the top 3 results"
- 5. Read & note    "What does this paper say?" (Claude auto-creates a reading note)
- 6. Verify         "Has this been contradicted by newer research?"
- 7. Discuss        "How do these papers fit together for Section III?"
- 8. Draft          "Save that as a working draft" (only after you agree on the argument)
- 9. Write          "Let's polish the Section III draft into the manuscript"
-10. Build          "Build my paper as a PDF"
-11. Repeat         "What's next on the search queue?"
+ 1. Outline        "Help me build an outline for my paper on [topic]"
+ 2. Search queue    "What papers do we need? Let's prioritize them."
+ 3. Search          "Let's work through the P0 searches first"
+ 4. Download        "Download the top 3 results"
+ 5. Read & note     "What does this paper say?" (Claude auto-creates a reading note)
+ 6. Verify          "Has this been contradicted by newer research?"
+ 7. Writing plan    "Let's build a writing plan with word budgets for each section"
+ 8. Threshold check "Have we hit the good-enough-to-draft threshold?"
+ 9. Discuss         "How do these papers fit together for Section III?"
+10. Draft           "Save that as a working draft" (only after you agree on the argument)
+11. Write           "Let's polish the Section III draft into the manuscript"
+12. Build           "Build my paper as a PDF"
+13. Repeat          "What's next on the search queue?"
 ```
 
 All of this happens in conversation. Claude knows the project structure, the tools, your search queue, and your progress.

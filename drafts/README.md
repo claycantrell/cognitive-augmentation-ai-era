@@ -9,12 +9,17 @@ These are **not** the final manuscript — they're where you develop your argume
 - **Gaps** — what's still missing
 - **Draft prose** — rough paragraphs you'll eventually polish and move to the manuscript
 
+## Writing Plan
+
+This folder also contains the **writing plan** (`writing-plan.md`) — a section-by-section drafting skeleton with word budgets, paragraph-level instructions, discipline notes, and a throughline map. Create it (from `templates/writing-plan.md`) once the outline is stable and before major drafting begins. The writing plan guides the drafts; the drafts feed the manuscript.
+
 ## Workflow
 
-    notes/ (what each paper says)
-        ↓
-    drafts/ (what the papers mean together — your argument)
-        ↓
-    manuscript/main.md (polished final paper)
+    outline → search queue → notes → writing plan → drafts → manuscript
 
-Claude creates and updates these automatically as you collect sources and develop your argument.
+- **Notes** capture what each paper says (objective)
+- **Writing plan** captures what each section should do and how long it should be (instructions)
+- **Drafts** capture what the papers mean together for the argument (subjective — requires user approval)
+- **Manuscript** is the polished final paper
+
+Claude creates and updates these as you collect sources and develop your argument. **Drafts require user approval** — Claude will discuss how papers connect and propose an evidence chain before saving.
