@@ -28,55 +28,63 @@ You don't need to memorize commands or learn software. You just talk to Claude.
 
 ## Getting Started
 
-### Step 1: Install Claude Code
+### Step 1: Open Your Terminal
 
-You need two things on your computer. Open your **Terminal** app (on Mac, search for "Terminal" in Spotlight):
+The **terminal** is a text window where you type commands. That's how you'll talk to Claude.
 
-1. **Install Node.js** — download from [nodejs.org](https://nodejs.org/) and run the installer. This is a one-time thing that Claude Code needs to run.
+- **Mac:** Press `Cmd + Space`, type **Terminal**, and hit Enter.
+- **Linux:** Look for "Terminal" in your applications menu.
+- **Windows:** Install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) first, then open the Ubuntu app.
 
-2. **Install Claude Code** — paste this into your terminal and press Enter:
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
+You'll see a blinking cursor waiting for you to type. That's it — that's the terminal.
 
-3. **Log in to Claude Code** — type this in your terminal and press Enter:
-   ```bash
-   claude
-   ```
-   The first time you run it, Claude will ask you to log in. You have two options:
-   - **Anthropic account** (recommended) — sign up free at [console.anthropic.com](https://console.anthropic.com). You'll get some free usage to start with, then it's pay-as-you-go.
-   - **Claude Pro/Max subscription** — if you already pay for Claude at [claude.ai](https://claude.ai), you can connect that account instead.
+### Step 2: Install Claude Code
 
-   Follow the on-screen prompts — it will open a browser window where you log in, then come back to the terminal. Once you see Claude responding, you're in. Type `/exit` to close it for now — we'll come back to it in Step 3.
+Copy and paste each of these into your terminal, one at a time, pressing Enter after each one:
 
-That's it. Claude Code is your AI research assistant. Everything else, Claude can set up for you.
+**First, install Node.js** (a behind-the-scenes tool that Claude Code needs):
 
-### Step 2: Get Your Copy of This Project
+    curl -fsSL https://fnm.vercel.app/install | bash
+
+Close your terminal and open a new one, then:
+
+    fnm install --lts
+
+**Next, install Claude Code itself:**
+
+    npm install -g @anthropic-ai/claude-code
+
+**Now, start Claude to log in:**
+
+    claude
+
+The first time you run this, Claude will ask you to create an account. You have two options:
+
+- **Anthropic account** (recommended) — sign up free at [console.anthropic.com](https://console.anthropic.com). You get some free usage, then pay-as-you-go.
+- **Claude Pro/Max subscription** — if you already pay for Claude at [claude.ai](https://claude.ai), you can connect that instead.
+
+A browser window will pop open — log in there, then come back to the terminal. Once you see Claude talking to you, you're in. Type `/exit` to close it for now.
+
+### Step 3: Get Your Copy of This Project
 
 You'll need a **GitHub account** (free) — sign up at [github.com](https://github.com) if you don't have one.
 
-Then paste these commands into your terminal:
+Then paste these commands into your terminal one at a time, pressing Enter after each:
 
-```bash
-# Install the GitHub CLI (if you don't have it)
-# Mac:
-brew install gh
-# Linux:
-sudo apt install gh
+    brew install gh
 
-# Log in to GitHub
-gh auth login
+*(If you're on Linux, use `sudo apt install gh` instead.)*
 
-# Get your own copy of this project
-gh repo fork claycantrell/research-scaffold --clone
-cd research-scaffold
-```
+    gh auth login
 
-### Step 3: Start Claude
+*(Follow the prompts — it will ask you to log in through your browser, just like Claude did.)*
 
-```bash
-claude
-```
+    gh repo fork claycantrell/research-scaffold --clone
+    cd research-scaffold
+
+### Step 4: Start Claude in Your Project
+
+    claude
 
 That's it — you're talking to your research assistant now. Say:
 
