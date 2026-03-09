@@ -20,6 +20,8 @@ Act on requests directly. Don't just explain what to do — do it.
 manuscript/main.md          ← The paper. Pandoc Markdown with YAML frontmatter.
                                Cite with [@key] syntax. This is the main writing file.
 outline.md                  ← Research plan: thesis, sections, structure.
+progress.md                 ← What's done, what's not, where we left off. Claude updates this.
+decisions.md                ← Choices made along the way. Claude updates this.
 sources/                    ← Downloaded PDFs of cited papers.
 library/                    ← Papis reference library (YAML metadata + PDFs per folder).
 notes/                      ← Reading notes (one file per paper). Use templates/note.md format.
@@ -176,17 +178,37 @@ The user is likely working in **VS Code** with this project open. They can see t
 
 If the user is working in **terminal only** (no VS Code), show file contents inline when they ask about a document rather than just saying "check the file."
 
+## Project Memory — IMPORTANT
+
+Three files track the state of this research project across sessions. **Read all three before doing anything** at the start of every conversation:
+
+1. **`outline.md`** — The structure of the paper: thesis, sections, research question. Update this when the user changes scope or reorganizes sections.
+2. **`progress.md`** — A checklist of what's done and what's not, plus a "Where We Left Off" note. Update this at every save point.
+3. **`decisions.md`** — Choices the user has made: scope, style, focus areas, things they've ruled out. Update this whenever a decision is made.
+
+### Rules for Updating Project Memory
+
+- **Update at every save point.** Whenever you save a snapshot (commit), also update `progress.md` and `decisions.md` if anything has changed. Include these files in the snapshot.
+- **Keep it concise.** These files are for quick orientation, not a transcript. A few bullet points per session, not paragraphs.
+- **The checklist in progress.md should mirror outline.md.** If the user adds a new section to the outline, add a corresponding checkbox to progress.md.
+- **Mark sections with clear status.** Use `[x]` for done, `[ ]` for not started, and `[-]` for in progress. Add brief notes like `[-] III. Literature Review — 3 of 8 subsections drafted`.
+- **"Where We Left Off" is the most important line in progress.md.** Write it as if you're leaving a note for a colleague picking up your shift: "User finished downloading papers on cognitive offloading. Next step: create reading notes and start drafting Section II."
+- **Decisions should include the why.** Not just "APA style" but "APA style — user's department requires it."
+- **Never delete decisions.** If a decision changes, update it with the new choice and note that it changed: "~~Chicago style~~ → APA style (changed March 2026, department requirement)."
+
 ## First-Time Setup Help
 
 The user may have ZERO technical experience. They are following a README that tells them to just talk to you. Be ready to do everything for them.
 
 When a user first opens this project and talks to you:
 
-1. **Check if setup has been run.** Run `make check` to see if tools are installed. If not, run `./setup.sh` for them.
-2. **Help them fill in outline.md.** Ask about their research topic and help them draft the outline.
-3. **Help them set up API keys.** Walk them through editing `.env` if they want better search results.
-4. **Explain the workspace.** If they seem confused, briefly explain: "Your project has folders for your manuscript, sources, notes, and bibliography. I can help you with all of them — just tell me what you need."
-5. **Save a first snapshot.** After initial setup is done, save their work (see "Saving Work" section below).
+1. **Read project memory.** Check `outline.md`, `progress.md`, and `decisions.md` to understand the current state. If they're still template defaults, this is a new project.
+2. **Check if setup has been run.** Run `make check` to see if tools are installed. If not, run `./setup.sh` for them.
+3. **Help them fill in outline.md.** Ask about their research topic and help them draft the outline.
+4. **Initialize progress.md.** Update the checklist to match the sections in their outline.
+5. **Help them set up API keys.** Walk them through editing `.env` if they want better search results.
+6. **Explain the workspace.** If they seem confused, briefly explain: "Your project has folders for your manuscript, sources, notes, and bibliography. I can help you with all of them — just tell me what you need."
+7. **Save a first snapshot.** After initial setup is done, save their work (see "Saving Work" section below).
 
 ## Saving Work (Git) — CRITICAL
 

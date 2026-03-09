@@ -134,6 +134,18 @@ This project automatically tracks every change you make — think of it as an **
 - **Your work is backed up online.** Claude can push your saved snapshots to GitHub, so even if your computer dies, your research is safe. Just say: *"Back up my work."*
 - **You don't need to understand Git.** Claude handles all of that behind the scenes. If you're curious, "saving a snapshot" is called a "commit" and "backing up online" is called a "push" — but you never need to type those words.
 
+### Claude Remembers Where You Left Off
+
+Every time you close Claude and come back later, it picks up where you left off. It knows what sections you've drafted, which papers you've found, what decisions you've made, and what you planned to do next.
+
+This works because three files in your project act as Claude's memory:
+
+- **`outline.md`** — your paper's structure and thesis
+- **`progress.md`** — a checklist of what's done and a note about where you left off
+- **`decisions.md`** — choices you've made along the way (scope, style, focus areas)
+
+Claude updates these automatically as you work. You don't need to touch them — but you can look at them anytime to see the state of your project at a glance.
+
 ---
 
 ## How to Use It (Just Talk)
@@ -180,8 +192,11 @@ Once Claude Code is running inside this project, you can say things like:
 
 ## How the Folder Is Organized
 
-| Folder | What goes in it | Analogy |
+| File / Folder | What goes in it | Analogy |
 |--------|----------------|---------|
+| `outline.md` | Your research plan — thesis, sections, structure | Your table of contents |
+| `progress.md` | What's done, what's not, where you left off | Your to-do list |
+| `decisions.md` | Choices you've made about scope, style, focus | Your research journal |
 | `manuscript/` | Your paper — the actual writing | Your typewriter |
 | `sources/` | Downloaded PDFs of papers you've found | Your file drawer of photocopied articles |
 | `library/` | Organized metadata for each source | Your card catalog |
