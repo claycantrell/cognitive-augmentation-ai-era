@@ -283,6 +283,7 @@ Everything Claude does under the hood uses `make` commands. If you prefer to run
 | Search Semantic Scholar | `make search QUERY="your topic"` |
 | Deeper search with citation counts | `make search-py QUERY="your topic"` |
 | Search OpenAlex (250M+ papers) | `make search-openalex QUERY="your topic"` |
+| Find papers by a specific author | `make search-author AUTHOR="Jane Smith"` |
 
 ### Downloading Papers
 | What you want to do | Command |
