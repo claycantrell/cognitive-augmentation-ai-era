@@ -34,21 +34,12 @@ search: ## Search Semantic Scholar. Usage: make search QUERY="topic"
 	semantic_bibtool "$(QUERY)"
 
 .PHONY: search-py
-search-py: ## Python-based deeper search via semanticscholar library. Usage: make search-py QUERY="topic"
+search-py: ## Deeper search with citation counts. Usage: make search-py QUERY="topic"
 	@if [ -z "$(QUERY)" ]; then \
 		echo "Error: QUERY is required. Usage: make search-py QUERY=\"topic\""; \
 		exit 1; \
 	fi
-	@python3 -c "\
-	from semanticscholar import SemanticScholar; \
-	sch = SemanticScholar(); \
-	results = sch.search_paper('$(QUERY)', limit=10); \
-	print(f'\n--- Results for: $(QUERY) ---\n'); \
-	for p in results: \
-	    cites = p.citationCount if p.citationCount else 0; \
-	    year  = p.year if p.year else 'N/A'; \
-	    print(f'  [{year}] ({cites} cites) {p.title}'); \
-	print()"
+	@python3 scripts/search-papers.py "$(QUERY)"
 
 .PHONY: search-openalex
 search-openalex: ## Search OpenAlex (250M+ papers). Usage: make search-openalex QUERY="topic"
@@ -56,20 +47,7 @@ search-openalex: ## Search OpenAlex (250M+ papers). Usage: make search-openalex 
 		echo "Error: QUERY is required. Usage: make search-openalex QUERY=\"topic\""; \
 		exit 1; \
 	fi
-	@python3 -c "\
-	import pyalex; \
-	from pyalex import Works; \
-	pyalex.config.email = 'user@example.com'; \
-	results = Works().search('$(QUERY)').get(per_page=10); \
-	print(f'\n--- OpenAlex results for: $(QUERY) ---\n'); \
-	for w in results: \
-	    year = w.get('publication_year', 'N/A'); \
-	    cited = w.get('cited_by_count', 0); \
-	    title = w.get('title', 'Untitled'); \
-	    doi = w.get('doi', ''); \
-	    print(f'  [{year}] ({cited} cites) {title}'); \
-	    if doi: print(f'         DOI: {doi}'); \
-	print()"
+	@python3 scripts/search-openalex.py "$(QUERY)"
 
 .PHONY: search-author
 search-author: ## Find papers by a specific author. Usage: make search-author AUTHOR="Jane Smith"
@@ -77,26 +55,7 @@ search-author: ## Find papers by a specific author. Usage: make search-author AU
 		echo "Error: AUTHOR is required. Usage: make search-author AUTHOR=\"Jane Smith\""; \
 		exit 1; \
 	fi
-	@python3 -c "\
-	from semanticscholar import SemanticScholar; \
-	sch = SemanticScholar(); \
-	authors = sch.search_author('$(AUTHOR)', limit=3); \
-	if not authors: \
-	    print('No authors found matching: $(AUTHOR)'); \
-	    exit(); \
-	author = authors[0]; \
-	print(f'\n--- Papers by {author.name} ---'); \
-	print(f'    Affiliations: {author.affiliations}'); \
-	print(f'    h-index: {author.hIndex}, Total citations: {author.citationCount}\n'); \
-	papers = sch.get_author_papers(author.authorId, limit=20); \
-	for p in papers: \
-	    cites = p.citationCount if p.citationCount else 0; \
-	    year = p.year if p.year else 'N/A'; \
-	    doi = ''; \
-	    if p.externalIds and 'DOI' in p.externalIds: \
-	        doi = f'  DOI: {p.externalIds[\"DOI\"]}'; \
-	    print(f'  [{year}] ({cites} cites) {p.title}{doi}'); \
-	print()"
+	@python3 scripts/search-author.py "$(AUTHOR)"
 
 # ==============================================================================
 # RETRIEVAL
