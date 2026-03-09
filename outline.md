@@ -60,8 +60,13 @@ Artificial superintelligence is arriving faster than our institutions can adapt,
   - Reduced amygdala reactivity (emotional regulation, reduced fear-based decision making)
   - Structural brain changes visible on fMRI
 - **The problem: this takes 10,000+ hours** — decades of disciplined practice that almost no one will do
+- **The bridge is already being built** — Sanguinetti's SEMA Lab (Sonication Enhanced Mindful Awareness) at University of Arizona
+  - Transcranial focused ultrasound to the right prefrontal cortex enhanced mood and functional connectivity in 200+ volunteers
+  - Collaboration with Shinzen Young to develop accelerated mindfulness protocols
+  - Targeting addiction, chronic pain, depression — the same cognitive/emotional deficits this paper identifies as existential risks
+  - Proof that technology can accelerate contemplative neuroscience, not just replace it
 - **Cognitive enhancement as a shortcut to these states** — not replacing the wisdom, but providing the neurological substrate
-- **The analogy:** meditation is the proof of concept. Enhancement is the delivery mechanism.
+- **The analogy:** meditation is the proof of concept. Enhancement is the delivery mechanism. Sanguinetti's work is the early evidence that the delivery mechanism works.
 
 ## VII. Synthesis: Enhancement as Existential Strategy
 - **The argument in full:** unenhanced humans will either destroy themselves with AI, be enslaved by it, or be sedated by it. Enhanced humans have a chance to coexist with it.
