@@ -201,6 +201,7 @@ Once Claude Code is running inside this project, you can say things like:
 | `sources/` | Downloaded PDFs of papers you've found | Your file drawer of photocopied articles |
 | `library/` | Organized metadata for each source | Your card catalog |
 | `notes/` | Your reading notes on individual papers | Your note cards |
+| `drafts/` | Working drafts for each section — where argument meets evidence | Your rough drafts pile |
 | `bibliography/` | Your formatted reference list | Your bibliography cards |
 | `figures/` | Charts, images, diagrams | Your illustration folder |
 | `scratch/` | Brainstorming, rough ideas, discarded material | Your wastebasket (that you can dig through) |
