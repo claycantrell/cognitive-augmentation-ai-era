@@ -26,7 +26,7 @@ Pilot study from the SEMA Lab. Targeted the posterior cingulate cortex (PCC) —
 - fMRI during TUS targeting the posterior cingulate cortex
 - Measured changes in DMN functional connectivity
 - Collected subjective experience reports from participants
-- Double-blind, sham-controlled
+- Single-blind, sham-controlled
 
 ## Relevance to This Work
 
