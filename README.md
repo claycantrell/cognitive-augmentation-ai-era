@@ -1,81 +1,103 @@
 # Research Scaffold
 
-**A ready-made project folder for academic research — with tools that find papers, organize your sources, manage citations, and produce a finished document.**
+**A ready-made project folder for academic research, powered by Claude Code.**
 
-If you've ever spent hours hunting through databases, copying citations by hand, wrestling with formatting, or losing track of which paper said what — this project automates all of that. You type simple commands, and the tools do the tedious work.
+You talk to an AI assistant in plain English. It finds papers, downloads them, organizes your sources, manages citations, writes with you, and produces a finished document. You focus on the ideas — Claude handles the tedium.
 
-Everything here is **free** and runs on your computer. Nothing is stored in the cloud. Your research stays yours.
-
----
-
-## What Is This, Exactly?
-
-Think of it as a **pre-organized filing cabinet for a research project**, except it lives on your computer as a folder (called a "repository") and comes with built-in tools that can:
-
-- **Search millions of academic papers** by topic or keyword
-- **Download papers** directly to your project folder
-- **Summarize papers** so you can quickly decide what's worth reading
-- **Check whether a paper's findings have been confirmed or disputed** by later research
-- **Keep track of all your sources** with structured metadata
-- **Manage your bibliography** automatically
-- **Take structured reading notes** with templates
-- **Produce a finished PDF, Word document, or webpage** from your writing — with properly formatted citations and a reference list
-
-You interact with it by typing short commands into a "terminal" (the text-based interface on your computer). No clicking through menus, no subscription software, no learning curve beyond the commands listed below.
+Everything here is **free** and runs on your computer. Your research stays yours.
 
 ---
 
-## What You'll Need Before Starting
+## What Is This?
+
+Think of it as a **pre-organized filing cabinet for a research project** — except it comes with a built-in research assistant (Claude Code) that can:
+
+- **Find papers** — "Find me recent papers about cognitive enhancement"
+- **Download them** — "Download that first one"
+- **Summarize them** — "What does this paper argue?"
+- **Verify them** — "Has this paper's findings been contradicted?"
+- **Organize your sources** — "Add this to my library"
+- **Take notes** — "Create a reading note for this paper"
+- **Write with you** — "Draft an introduction based on my outline"
+- **Cite properly** — "Cite Smith 2024 in that paragraph"
+- **Produce finished documents** — "Build my paper as a PDF"
+
+You don't need to memorize commands or learn software. You just talk to Claude.
+
+---
+
+## Getting Started
+
+### What You'll Need
 
 1. **A Mac or Linux computer** (Windows users can use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install))
-2. **A terminal** — already on your computer:
-   - Mac: open "Terminal" from Applications > Utilities
-   - Linux: usually called "Terminal" in your applications menu
+2. **Claude Code** — Anthropic's command-line AI assistant. Install it:
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+   (You'll need [Node.js](https://nodejs.org/) installed first. If you don't have it, download it from that link.)
 3. **A GitHub account** (free) — sign up at [github.com](https://github.com) if you don't have one
-4. **A text editor** — anything works. If you don't have a preference, [VS Code](https://code.visualstudio.com/) is free and beginner-friendly. You can also use TextEdit (Mac) or any plain-text editor.
 
-That's it. The setup script handles everything else.
+### Setup (5 minutes)
+
+```bash
+# 1. Get your own copy of this project
+gh repo fork claycantrell/research-scaffold --clone
+cd research-scaffold
+
+# 2. Install the research tools
+./setup.sh
+
+# 3. Start Claude Code
+claude
+```
+
+That's it. You're now talking to your research assistant. Try saying:
+
+> "I'm researching the effects of sleep deprivation on memory. Help me find papers."
+
+Claude will search for papers, show you the results, and ask what you'd like to do next.
 
 ---
 
-## Getting Started (Step by Step)
+## How to Use It (Just Talk)
 
-### 1. Get a copy of this project
+Once Claude Code is running inside this project, you can say things like:
 
-Open your terminal and paste this command:
+### Finding & Collecting Sources
+- "Find papers about climate change and migration patterns"
+- "Search for studies on cognitive enhancement published after 2020"
+- "Download that paper — the DOI is 10.1038/s41586-020-2649-2"
+- "Download this arXiv paper: 2301.00001"
+- "I have some PDFs in my Downloads folder. Move them into this project and add them to my library."
 
-```bash
-gh repo fork claycantrell/research-scaffold --clone
-cd research-scaffold
-```
+### Reading & Understanding
+- "Summarize the paper I just downloaded"
+- "What are the key findings in sources/smith-2024.pdf?"
+- "Has this paper's conclusions been supported by later research?"
+- "Create a reading note for this paper"
 
-This creates your own copy of the project on your computer.
+### Writing
+- "Show me my outline"
+- "Draft the introduction section based on my outline and the papers we've collected"
+- "Add a citation to Walker 2017 in the second paragraph"
+- "Rewrite this paragraph to be more concise"
+- "What's my word count?"
 
-### 2. Install the tools
+### Publishing
+- "Build my paper as a PDF"
+- "Export it as a Word document too"
+- "Change the citation style from APA to Chicago"
 
-```bash
-./setup.sh
-```
-
-This will automatically download and install everything you need. It takes a few minutes the first time. You'll see a checklist at the end showing what was installed.
-
-### 3. Set up your research topic
-
-Open the file called `outline.md` in your text editor. You'll see placeholder text like `{{YOUR WORKING TITLE}}` — replace these with your own research question, thesis, and section plan. This is your living table of contents.
-
-### 4. Start finding papers
-
-```bash
-make search QUERY="your topic here"
-```
-
-That's it. You're researching.
+### Project Management
+- "What sources are in my library?"
+- "Search my notes for anything about REM sleep"
+- "Commit my progress — I just finished the literature review section"
+- "What sections from my outline still need to be written?"
 
 ---
 
 ## How the Folder Is Organized
-
-When you look inside this project, here's what each folder is for:
 
 | Folder | What goes in it | Analogy |
 |--------|----------------|---------|
@@ -85,123 +107,62 @@ When you look inside this project, here's what each folder is for:
 | `notes/` | Your reading notes on individual papers | Your note cards |
 | `bibliography/` | Your formatted reference list | Your bibliography cards |
 | `figures/` | Charts, images, diagrams | Your illustration folder |
-| `scratch/` | Brainstorming, rough ideas, discarded material | Your wastebasket (that you can dig through later) |
+| `scratch/` | Brainstorming, rough ideas, discarded material | Your wastebasket (that you can dig through) |
 | `output/` | The finished product — PDF, Word doc, etc. | Your printer tray |
 | `templates/` | Pre-made forms for notes and drafts | Your blank index cards |
-| `docs/` | Instructions for each tool | Your reference manual |
-
----
-
-## The Commands (Your Cheat Sheet)
-
-Every command starts with `make` followed by a word. Type `make` by itself to see the full list.
-
-### Finding Papers
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Search for papers on a topic | `make search QUERY="climate change migration"` |
-| Do a deeper search with citation counts | `make search-py QUERY="climate change migration"` |
-
-### Downloading Papers
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Download a paper from arXiv | `make fetch-arxiv ID="2301.00001"` |
-| Download a paper by its DOI number | `make fetch-doi DOI="10.1038/s41586-020-2649-2"` |
-
-**What's a DOI?** It's a permanent ID number for a published paper — like an ISBN for books. You'll find it on the first page of most journal articles. It usually starts with `10.` followed by numbers.
-
-### Working with PDFs
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Pull the text out of a PDF | `make extract-text PDF="sources/paper.pdf"` |
-| Pull text from all your PDFs at once | `make extract-all` |
-| Find the DOI of a paper from its PDF | `make identify-doi PDF="sources/paper.pdf"` |
-
-### Understanding & Verifying Papers
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Get an AI summary of a paper | `make summarize PDF="sources/paper.pdf"` |
-| Check if a paper's claims have been supported or contradicted | `make verify DOI="10.1038/s41586-020-2649-2"` |
-
-### Organizing Your Sources
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Add a paper to your library by DOI | `make add-paper DOI="10.1038/s41586-020-2649-2"` |
-| Add a PDF you already downloaded | `make add-pdf PDF="sources/paper.pdf"` |
-| Generate your bibliography file | `make bib` |
-| See all sources in your library | `make list-refs` |
-
-### Taking Notes
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Create a new reading note (from a template) | `make new-note TITLE="Name of the Paper"` |
-| Search through your notes | `make search-notes QUERY="keyword"` |
-
-### Writing & Producing Your Paper
-
-| What you want to do | What you type |
-|---------------------|---------------|
-| Turn your manuscript into a PDF | `make pdf` |
-| Turn it into a Word document | `make docx` |
-| Turn it into a webpage | `make html` |
-| Build all three at once | `make all` |
-| Check your word count | `make wordcount` |
+| `docs/` | Detailed instructions for each tool | Your reference manual |
 
 ---
 
 ## How Citations Work
 
-You write your paper in the file `manuscript/main.md` using plain text. When you want to cite a source, you put its reference key in brackets:
+You write your paper in plain text. When you want to cite a source, you (or Claude) put its reference key in brackets:
 
 ```
-Studies have shown a link between sleep and memory consolidation [@walker2017].
+Studies have shown a link between sleep and memory [@walker2017].
 
 This was confirmed by later work [@smith2023, p. 42].
 
 Multiple researchers agree [see @walker2017; @smith2023; @jones2021].
 ```
 
-When you type `make pdf`, the system automatically:
+When you build your paper, the system automatically:
 
-1. Looks up each `[@key]` in your bibliography file
+1. Looks up each reference in your bibliography
 2. Formats the citation in proper academic style (APA 7th edition by default)
-3. Generates a complete "References" section at the end of your paper
+3. Generates a complete "References" section at the end
 
-**You never have to format a citation by hand.** If you want a different style (Chicago, MLA, Harvard, etc.), you can swap in a different style file — there are thousands available at the [Zotero Style Repository](https://www.zotero.org/styles).
+**You never format a citation by hand.** Want a different style? Just tell Claude: "Switch my citations to Chicago style."
 
 ---
 
-## The Typical Research Workflow
+## The Research Workflow
 
-Here's how a research session might go, from start to finish:
+A typical session looks like this:
 
 ```
- 1. Plan         Open outline.md, define your question and argument
- 2. Search       make search QUERY="your topic"
- 3. Download     make fetch-doi DOI="..." or make fetch-arxiv ID="..."
- 4. Catalog      make add-paper DOI="..."
- 5. Read         make extract-text PDF="..." or open the PDF
- 6. Summarize    make summarize PDF="..."
- 7. Verify       make verify DOI="..." (are the findings still accepted?)
- 8. Take notes   make new-note TITLE="Paper Name"
- 9. Write        Edit manuscript/main.md, citing with [@key]
-10. Build        make bib && make pdf
-11. Repeat       Go back to step 2 as your research deepens
+ 1. Plan         "Help me flesh out my outline on [topic]"
+ 2. Search       "Find papers about [subtopic]"
+ 3. Download     "Download the top 3 results"
+ 4. Catalog      "Add them to my library"
+ 5. Read         "Summarize that first paper"
+ 6. Verify       "Has this paper been contradicted by newer research?"
+ 7. Notes        "Create a reading note for it"
+ 8. Write        "Draft the literature review section"
+ 9. Cite         "Make sure all sources are properly cited"
+10. Build        "Build my paper as a PDF"
+11. Repeat       "Now let's work on the methodology section"
 ```
 
-A detailed walkthrough with examples is in [docs/workflows.md](docs/workflows.md).
+All of this happens in conversation. Claude knows the project structure, the tools, and your progress.
 
 ---
 
 ## API Keys (Optional but Recommended)
 
-Some search tools work better with a free API key. After running the setup, you'll have a file called `.env` where you can paste these in:
+Some search tools work better with a free API key. After setup, you'll have a `.env` file. Tell Claude:
+
+> "Help me set up my API keys"
 
 | Key | What it's for | Cost | Where to get it |
 |-----|--------------|------|-----------------|
@@ -209,48 +170,119 @@ Some search tools work better with a free API key. After running the setup, you'
 | `OPENAI_API_KEY` | AI-powered paper summaries | Pay-per-use | [platform.openai.com](https://platform.openai.com) |
 | `ANTHROPIC_API_KEY` | Alternative AI summaries | Pay-per-use | [console.anthropic.com](https://console.anthropic.com) |
 
-The Semantic Scholar key is the only one you really need, and it's completely free.
+The Semantic Scholar key is the only one that matters, and it's free.
+
+---
+
+## For Power Users: Direct Commands
+
+Everything Claude does under the hood uses `make` commands. If you prefer to run them yourself:
+
+<details>
+<summary>Click to expand the full command reference</summary>
+
+### Finding Papers
+| What you want to do | Command |
+|---------------------|---------|
+| Search for papers | `make search QUERY="your topic"` |
+| Deeper search with citation counts | `make search-py QUERY="your topic"` |
+
+### Downloading Papers
+| What you want to do | Command |
+|---------------------|---------|
+| Download from arXiv | `make fetch-arxiv ID="2301.00001"` |
+| Download by DOI | `make fetch-doi DOI="10.1038/s41586-020-2649-2"` |
+
+### Working with PDFs
+| What you want to do | Command |
+|---------------------|---------|
+| Extract text from a PDF | `make extract-text PDF="sources/paper.pdf"` |
+| Extract text from all PDFs | `make extract-all` |
+| Find a DOI in a PDF | `make identify-doi PDF="sources/paper.pdf"` |
+
+### Understanding & Verifying
+| What you want to do | Command |
+|---------------------|---------|
+| Summarize a paper | `make summarize PDF="sources/paper.pdf"` |
+| Check citation support/contradiction | `make verify DOI="10.1038/s41586-020-2649-2"` |
+
+### Organizing Sources
+| What you want to do | Command |
+|---------------------|---------|
+| Add paper by DOI | `make add-paper DOI="10.1038/s41586-020-2649-2"` |
+| Add a local PDF | `make add-pdf PDF="sources/paper.pdf"` |
+| Generate bibliography | `make bib` |
+| List all references | `make list-refs` |
+
+### Note-Taking
+| What you want to do | Command |
+|---------------------|---------|
+| Create a reading note | `make new-note TITLE="Paper Title"` |
+| Search notes | `make search-notes QUERY="keyword"` |
+
+### Writing & Building
+| What you want to do | Command |
+|---------------------|---------|
+| Build PDF | `make pdf` |
+| Build Word document | `make docx` |
+| Build HTML | `make html` |
+| Build all formats | `make all` |
+| Word count | `make wordcount` |
+
+### Utilities
+| What you want to do | Command |
+|---------------------|---------|
+| Check all tools are working | `make check` |
+| Re-run setup | `make setup` |
+
+</details>
 
 ---
 
 ## The Tools Under the Hood
 
-You don't need to know how these work individually — the `make` commands handle everything. But if you're curious:
+Claude uses 15+ free CLI tools to do the work. You don't need to know about them, but if you're curious:
 
-| What it does | Tool name | More info |
-|-------------|-----------|-----------|
+| What it does | Tool | More info |
+|-------------|------|-----------|
 | Searches 200M+ academic papers | Semantic Scholar | [docs/01-discovery.md](docs/01-discovery.md) |
 | Downloads papers from arXiv | arxiv-dl | [docs/02-retrieval.md](docs/02-retrieval.md) |
 | Downloads papers by DOI | doi2pdf | [docs/02-retrieval.md](docs/02-retrieval.md) |
 | Extracts DOIs from PDFs | pdf2doi | [docs/02-retrieval.md](docs/02-retrieval.md) |
 | Summarizes papers with AI | slurp, arxiv-summarizer | [docs/03-summarization.md](docs/03-summarization.md) |
-| Checks if findings are supported/disputed | scite-cli | [docs/03-summarization.md](docs/03-summarization.md) |
+| Checks if findings are supported | scite-cli | [docs/03-summarization.md](docs/03-summarization.md) |
 | Extracts text from PDFs | pdftotext, pdfminer | [docs/04-pdf-extraction.md](docs/04-pdf-extraction.md) |
 | Manages your reference library | papis | [docs/05-reference-management.md](docs/05-reference-management.md) |
 | Structured note-taking | nb, zk | [docs/06-note-taking.md](docs/06-note-taking.md) |
-| Converts your writing to PDF/Word/HTML | pandoc | [docs/07-writing-and-publishing.md](docs/07-writing-and-publishing.md) |
+| Builds PDF/Word/HTML from Markdown | pandoc | [docs/07-writing-and-publishing.md](docs/07-writing-and-publishing.md) |
 
 ---
 
 ## Frequently Asked Questions
 
 **Do I need to know how to code?**
-No. You just type the commands shown above. If you can copy and paste, you can use this.
+No. You talk to Claude in plain English. It handles everything.
+
+**Do I need to know what a "terminal" is?**
+Barely. You open it once, type `claude`, and from then on you're having a conversation.
 
 **What if I already have papers saved as PDFs?**
-Drop them in the `sources/` folder. Then use `make add-pdf PDF="sources/filename.pdf"` to add each one to your organized library.
+Tell Claude: "I have PDFs in my Downloads folder — add them to my project." It will move them into the right place and catalog them.
 
-**Can I collaborate with someone?**
-Yes. Since this is a GitHub repository, multiple people can work on the same project. Each person forks or clones the repo and can push their changes.
+**Can I collaborate with co-authors?**
+Yes. This is a GitHub repository, so multiple people can work on it. Each person forks the project and pushes their contributions.
 
 **What if something breaks?**
-Run `make check` to see which tools are installed and working. If something is missing, run `./setup.sh` again.
+Tell Claude: "Something seems broken, can you check my setup?" It will run diagnostics and fix what it can.
 
-**Can I use this for a book, dissertation, or thesis?**
-Absolutely. The structure works for any length of scholarly writing. Add more section files in `manuscript/` if you prefer to write chapters separately.
+**Can I use this for a dissertation or book?**
+Absolutely. The structure works for any length. You can split chapters into separate files in `manuscript/`.
 
-**I prefer Word/Google Docs for writing. Can I still use the other tools?**
-Yes. You can use the search, download, note-taking, and reference management commands without writing in Markdown. When you're ready, export your bibliography with `make bib` and import the `.bib` file into your word processor's citation manager.
+**I prefer writing in Word or Google Docs. Can I still use the rest?**
+Yes. Use Claude for finding, downloading, and organizing sources. When you're ready, say "Export my bibliography" and import the `.bib` file into your word processor's citation manager.
+
+**How is this different from Zotero, Mendeley, or EndNote?**
+Those are GUI applications you click through. This is an AI-powered command-line workflow where you describe what you want in natural language and it happens. Everything is stored as plain text files you own — no proprietary database, no vendor lock-in.
 
 ---
 
