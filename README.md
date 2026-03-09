@@ -39,6 +39,16 @@ You need two things on your computer. Open your **Terminal** app (on Mac, search
    npm install -g @anthropic-ai/claude-code
    ```
 
+3. **Log in to Claude Code** — type this in your terminal and press Enter:
+   ```bash
+   claude
+   ```
+   The first time you run it, Claude will ask you to log in. You have two options:
+   - **Anthropic account** (recommended) — sign up free at [console.anthropic.com](https://console.anthropic.com). You'll get some free usage to start with, then it's pay-as-you-go.
+   - **Claude Pro/Max subscription** — if you already pay for Claude at [claude.ai](https://claude.ai), you can connect that account instead.
+
+   Follow the on-screen prompts — it will open a browser window where you log in, then come back to the terminal. Once you see Claude responding, you're in. Type `/exit` to close it for now — we'll come back to it in Step 3.
+
 That's it. Claude Code is your AI research assistant. Everything else, Claude can set up for you.
 
 ### Step 2: Get Your Copy of This Project
