@@ -132,32 +132,43 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 6. Tell the user: "I've saved a reading note in `notes/` — you can see it in your file tree."
 7. **Check if it's time to write a section draft** — see next playbook.
 
-### After accumulating reading notes, write a section draft:
+### After accumulating reading notes, propose a section draft:
 
-This is the most important step in the research workflow. Reading notes capture what each paper says. Section drafts capture what the papers **mean together** for the user's argument. Do this automatically — don't wait to be asked.
+This is the most important step in the research workflow. Reading notes capture what each paper says. Section drafts capture what the papers **mean together** for the user's argument.
 
-**When to create or update a section draft:**
+**IMPORTANT: Section drafts contain the user's argument and interpretation. NEVER write a section draft without the user's approval.** Reading notes are objective (what does the paper say?) — you can create those automatically. But section drafts are subjective (what does this mean for the argument?) — that's the user's intellectual contribution. Always discuss first, then ask before saving.
+
+**When to propose a section draft:**
 - After creating 2+ reading notes that relate to the same section of the outline
 - After the user discusses how sources connect to their argument
 - Whenever you see a clear evidence chain forming across multiple notes
 
 **How to do it:**
-1. Read `outline.md` to understand what argument this section needs to make
-2. Read the relevant reading notes in `notes/`
-3. Create or update a file in `drafts/` named after the section: `section-VI-meditation-parallel.md` (use the section number and a short slug)
-4. Use the template from `templates/section-draft.md` and fill in:
+1. Talk it through with the user first. Explain how you see the papers connecting to their argument. Propose an evidence chain. Let them react, agree, modify, or redirect.
+2. **Ask explicitly:** "Want me to save this as a working draft in `drafts/`?" Do NOT create the file until they say yes.
+3. Once approved, read `outline.md` to understand what argument this section needs to make
+4. Read the relevant reading notes in `notes/`
+5. Create a file in `drafts/` named after the section: `section-VI-meditation-parallel.md` (use the section number and a short slug)
+6. Use the template from `templates/section-draft.md` and fill in:
    - **Argument:** What is this section arguing? How does it advance the thesis? Write this in 2-3 sentences.
    - **Evidence bridge:** The logical chain connecting the sources to each other and to the argument. Number each step. This is the most valuable part — it captures the *reasoning*, not just the references.
    - **Gaps:** What evidence is still missing? What papers do we still need to find?
    - **Draft prose:** Write rough paragraphs making the argument with citations. Doesn't need to be polished — just get the logic down in sentences. Use `[@key]` citation syntax.
    - **Sources used:** Table mapping each paper to its specific contribution to this section.
-5. Tell the user: "I've started a working draft for Section X in `drafts/`. It maps out the argument and what evidence we still need."
+
+   **CRITICAL — Cite your evidence precisely.** The user should never have to hunt through a paper to find where a claim came from. For every factual claim in the draft:
+   - **Use direct quotes when possible.** Pull the exact language from the paper and put it in quotation marks with the page number or section: `"exact words from the paper" (Smith 2024, p. 12)` or `"exact words" (Smith 2024, Results section)`.
+   - **When paraphrasing, name the specific section, figure, or table** the information came from: `Smith et al. found X (Table 2, p. 8)` or `In their Discussion, the authors argue that...`
+   - **Include specific numbers and data points.** Don't write "the study had a large sample" — write "N=217 healthy volunteers" or "effect size d=0.43." Pull these directly from the paper.
+   - **For key claims, include both the quote and the citation key:** `"TUS significantly enhanced positive mood" [@sanguinetti2020, p. 5]`
+   - The goal is traceability: anyone reading the draft should be able to find the exact source material in under 30 seconds.
+7. Tell the user: "I've saved a working draft for Section X in `drafts/`. Take a look — we can revise it anytime."
 
 **The research workflow is:**
 ```
 notes/ (what each paper says)  →  drafts/ (what they mean together)  →  manuscript/ (polished paper)
 ```
-Reading notes feed into section drafts. Section drafts feed into the manuscript. Claude manages this flow automatically.
+Reading notes feed into section drafts. Section drafts feed into the manuscript. Notes are created automatically. **Drafts require user approval.**
 
 ### When the user wants to verify a source:
 1. Run `make verify DOI="..."` to check citation support/contradiction
