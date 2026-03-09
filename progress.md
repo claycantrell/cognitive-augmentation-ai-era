@@ -3,29 +3,29 @@
 <!-- Claude updates this file automatically at every save point. -->
 
 ## Status
-Outline FINAL (v5): 17 sections. Writing plan complete with word budgets. First wave of research done. Drafting in progress — Sections I, II–III, IV, V, and XI drafted. Good-enough-to-draft threshold met for all sections.
+**COMPLETE FIRST DRAFT.** All 17 sections drafted and revised through user feedback. ~9,750 words of ~10,200 budget. Citation gaps remain but all sections have prose locked.
 
 ## Sections
-- [-] I. Introduction — draft complete (~600 words)
-- [-] II. The Governance Gap — draft complete (~800 words)
-- [-] III. The Timeline Problem — draft complete (~500 words)
-- [-] IV. AI Dependence and Civilizational Atrophy — draft complete (~700 words)
-- [-] V. Good vs Bad Enhancement — revised draft (~850 words) **KEY CONTRIBUTION**
-- [ ] VI. What Counts as Human Capacity-Building?
-- [ ] VII. Which Capacities Matter Most for AI Stewardship?
-- [ ] VIII. Paths Forward I: Assisted Therapeutic Intervention — VIII.E (restorative psychopharmacology) added to outline
-- [ ] IX. Paths Forward II: Adult Enhancement Beyond Therapy
-- [ ] X. Paths Forward III: Early Educational Intervention
-- [-] XI. Contemplative Practice as Proof of Concept — draft complete (~500 words)
-- [ ] XII. Capacity-Building Within the Broader AI Governance Portfolio
-- [ ] XIII. Roadblocks
-- [ ] XIV. The Dark Side
-- [ ] XV. Research and Policy Agenda
-- [ ] XVI. Discussion
-- [ ] XVII. Conclusion
+- [-] I. Introduction — draft complete, revised (~600 words)
+- [-] II. The Governance Gap — draft complete, revised (~800 words)
+- [-] III. The Timeline Problem — draft complete, revised (~500 words)
+- [-] IV. AI Dependence and Civilizational Atrophy — draft complete, revised twice (~700 words)
+- [-] V. Good vs Bad Enhancement — draft complete, revised twice (~850 words) **KEY CONTRIBUTION**
+- [-] VI. What Counts as Human Capacity-Building? — draft complete, revised (~500 words)
+- [-] VII. Which Capacities Matter Most? — draft complete, revised (~600 words)
+- [-] VIII. Paths Forward I: Assisted Therapeutic Intervention — draft complete, revised (~1,000 words)
+- [-] IX. Paths Forward II: Enhancement Beyond Therapy — draft complete, revised (~700 words)
+- [-] X. Paths Forward III: Early Education — draft complete, revised (~700 words)
+- [-] XI. Contemplative Practice as Proof of Concept — draft complete, revised (~500 words)
+- [-] XII. Governance Portfolio — draft complete, revised (~400 words)
+- [-] XIII. Roadblocks — draft complete, revised (~600 words)
+- [-] XIV. The Dark Side — draft complete, revised (~800 words)
+- [-] XV. Research and Policy Agenda — draft complete, revised (~600 words)
+- [-] XVI. Discussion — draft complete, revised (~500 words)
+- [-] XVII. Conclusion — draft complete, revised (~400 words)
 
 ## Word Count
-~3,950 of ~10,200 budget drafted
+~9,750 of ~10,200 budget drafted
 
 ## Sources Collected
 
@@ -56,20 +56,22 @@ Outline FINAL (v5): 17 sections. Writing plan complete with word budgets. First 
 
 ### Still Needed
 - Nuclear near-miss source (Section II)
-- Kahneman/Tversky cognitive bias citation (Section II, optional)
 - Smartphone/attention review — Haidt/Twenge or Odgers & Jensen (Section IV)
-- Pseudo-enhancement / dependency source (Section V, optional)
 - NIH/NCCIH psychedelic-assisted therapy source (Section VIII)
-- NIBS + psychotherapy meta-analysis (Section VIII)
+- NIBS + psychotherapy meta-analysis full citation (Section VIII)
 - rTMS clinical status source (Section VIII)
 - Combined treatment meta-analysis (Section VIII)
-- Rapid-acting antidepressant review — ketamine/esketamine (Section VIII.E)
-- Aggression treatment meta-analysis 2025 (Section VIII.E)
+- Rapid-acting antidepressant review — ketamine/esketamine (Section VIII)
+- Aggression treatment meta-analysis 2025 (Section VIII)
+- 2023 SEL meta-analysis full citation (Section X)
 - Executive function development review (Section X)
 - Immordino-Yang civic reasoning paper (Section X)
 - Children's mindfulness meta-analysis (Section X)
 - Coercive enhancement paper (Section XIV)
 - Equity in cognitive enhancement paper (Section XIV)
+- Enhancement taxonomy/review (Section VI, optional)
+- AI governance framework overview (Section XII, optional)
+- Meditation neuroplasticity review — Fox et al. 2014 or similar (Section XI, optional)
 
 ## Where We Left Off
-Sections I, II–III, IV, V (revised twice), and XI drafted. ~3,950 words of ~10,200 budget. Good-enough-to-draft threshold met. VIII.E (restorative psychopharmacology) added to outline and writing plan. Next step: draft remaining sections, starting with VI–VII (short definitional sections), then VIII, then X, then XIV. Continue downloading P0 sources in parallel with drafting.
+**Complete first draft achieved.** All 17 sections drafted, each revised through at least one round of user feedback. ~9,750 words. Next steps: (1) download remaining P0 sources and fill citation gaps, (2) assemble sections into manuscript/main.md, (3) final polish pass for consistency, tone, and transitions, (4) build PDF.
