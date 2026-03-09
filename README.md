@@ -138,9 +138,10 @@ This project automatically tracks every change you make — think of it as an **
 
 Every time you close Claude and come back later, it picks up where you left off. It knows what sections you've drafted, which papers you've found, what decisions you've made, and what you planned to do next.
 
-This works because three files in your project act as Claude's memory:
+This works because four files in your project act as Claude's memory:
 
 - **`outline.md`** — your paper's structure and thesis
+- **`search-queue.md`** — what papers still need to be found, organized by section
 - **`progress.md`** — a checklist of what's done and a note about where you left off
 - **`decisions.md`** — choices you've made along the way (scope, style, focus areas)
 
@@ -195,6 +196,7 @@ Once Claude Code is running inside this project, you can say things like:
 | File / Folder | What goes in it | Analogy |
 |--------|----------------|---------|
 | `outline.md` | Your research plan — thesis, sections, structure | Your table of contents |
+| `search-queue.md` | What papers you still need to find, by section | Your library request slips |
 | `progress.md` | What's done, what's not, where you left off | Your to-do list |
 | `decisions.md` | Choices you've made about scope, style, focus | Your research journal |
 | `manuscript/` | Your paper — the actual writing | Your typewriter |
@@ -213,13 +215,29 @@ Once Claude Code is running inside this project, you can say things like:
 
 ## How Research Becomes Writing
 
-Research papers don't go from "I found some papers" to "here's a polished manuscript" in one step. This scaffold breaks the process into three layers, and Claude manages the flow between them:
+Research papers don't go from "I have an idea" to "here's a polished manuscript" in one step. This scaffold breaks the process into four stages, and Claude manages the flow between them:
 
-    notes/  →  drafts/  →  manuscript/
+```
+outline  →  search queue  →  notes  →  drafts  →  manuscript
+```
 
-**1. Reading Notes (`notes/`)** — When you find and read a paper, Claude automatically creates a reading note. This is objective: what does the paper say? Key findings, methodology, data points, direct quotes with page numbers. One file per paper. You don't need to ask for this — it happens whenever Claude downloads or summarizes a source.
+### Stage 1: Create and edit the outline (`outline.md`)
 
-**2. Section Drafts (`drafts/`)** — This is where the real thinking happens. After you've collected a few papers on a topic, you and Claude talk through how they fit together. How does Paper A's finding connect to Paper B's result? What argument do they support? What's the logical chain? What evidence is still missing?
+You start by telling Claude what you want to write about. Together, you build an outline — thesis, sections, the arc of the argument. This is the map for everything that follows. As your thinking evolves, the outline evolves with it.
+
+### Stage 2: Build the search queue (`search-queue.md`)
+
+Once you know what your paper needs to argue, Claude helps you identify what evidence is missing. For each section of the outline, you figure out: *What kind of paper would support this claim? What keywords would find it?*
+
+These become entries in the search queue — a persistent, organized list of papers you still need to find. Each entry has keywords, alternative search terms, and a description of what kind of evidence you're looking for. Claude works through this queue across sessions: running searches, evaluating results, downloading papers, and marking items as done. You never lose track of where you are in the literature search.
+
+### Stage 3: Read and summarize (`notes/`)
+
+When Claude finds and downloads a paper, it automatically creates a reading note — one file per paper. This is objective: what does the paper say? Key findings, methodology, data points, direct quotes with page numbers. You don't need to ask for this — it happens whenever Claude downloads or summarizes a source.
+
+### Stage 4: Work through section drafts (`drafts/`)
+
+This is where the real thinking happens. After you've collected a few papers on a topic, you and Claude talk through how they fit together. How does Paper A's finding connect to Paper B's result? What argument do they support? What's the logical chain? What evidence is still missing?
 
 Once you agree on how the pieces fit, Claude saves a working draft in `drafts/` — one file per section of your paper. Each draft contains:
 - **Argument** — what this section is trying to say in 2-3 sentences
@@ -230,9 +248,19 @@ Once you agree on how the pieces fit, Claude saves a working draft in `drafts/` 
 
 **Important:** Claude will *not* write section drafts without your input. Reading notes are objective and get created automatically. But section drafts are *your* argument, *your* interpretation of what the evidence means. Claude will discuss how the papers connect, propose an evidence chain, and then ask: "Want me to save this as a working draft?" You decide.
 
-**3. Manuscript (`manuscript/main.md`)** — The polished final paper. When a section draft is solid, you move it here, clean it up, and it becomes part of the finished work.
+### Stage 5: Polish into manuscript (`manuscript/main.md`)
 
-**Why this matters:** The biggest risk in research is losing the *reasoning* — you read five papers, see how they connect, have an insight about your argument... and then forget it by next week. The `drafts/` folder captures that reasoning while it's fresh. The evidence log means you never have to re-read a paper just to find where a number came from.
+When a section draft is solid, you move it here, clean it up, and it becomes part of the finished work.
+
+### Why this pipeline matters
+
+The biggest risk in research is losing the *reasoning*. You read five papers, see how they connect, have an insight about your argument... and then forget it by next week. This pipeline captures every stage:
+
+- The **outline** captures your structural thinking
+- The **search queue** captures what evidence you still need (and what you've already tried)
+- The **reading notes** capture what each paper says
+- The **section drafts** capture what the papers *mean together* — your reasoning, while it's fresh
+- The **evidence log** means you never have to re-read a paper just to find where a number came from
 
 ---
 
@@ -260,23 +288,23 @@ When you build your paper, the system automatically:
 
 ## The Research Workflow
 
-A typical session looks like this:
+A typical project follows this arc:
 
 ```
- 1. Plan         "Help me flesh out my outline on [topic]"
- 2. Search       "Find papers about [subtopic]"
- 3. Download     "Download the top 3 results"
- 4. Catalog      "Add them to my library"
- 5. Read         "What does that first paper say?"
- 6. Verify       "Has this paper been contradicted by newer research?"
- 7. Notes        "Create a reading note for it"
- 8. Write        "Draft the literature review section"
- 9. Cite         "Make sure all sources are properly cited"
-10. Build        "Build my paper as a PDF"
-11. Repeat       "Now let's work on the methodology section"
+ 1. Outline       "Help me build an outline for my paper on [topic]"
+ 2. Search queue   "What papers do we need for each section? Let's build a search list."
+ 3. Search         "Let's work through the search queue — start with Section II"
+ 4. Download       "Download the top 3 results"
+ 5. Read & note    "What does this paper say?" (Claude auto-creates a reading note)
+ 6. Verify         "Has this been contradicted by newer research?"
+ 7. Discuss        "How do these papers fit together for Section III?"
+ 8. Draft          "Save that as a working draft" (only after you agree on the argument)
+ 9. Write          "Let's polish the Section III draft into the manuscript"
+10. Build          "Build my paper as a PDF"
+11. Repeat         "What's next on the search queue?"
 ```
 
-All of this happens in conversation. Claude knows the project structure, the tools, and your progress.
+All of this happens in conversation. Claude knows the project structure, the tools, your search queue, and your progress.
 
 ---
 

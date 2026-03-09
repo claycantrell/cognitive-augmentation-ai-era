@@ -31,6 +31,7 @@ manuscript/main.md          ← The paper. Pandoc Markdown with YAML frontmatter
 outline.md                  ← Research plan: thesis, sections, structure.
 progress.md                 ← What's done, what's not, where we left off. Claude updates this.
 decisions.md                ← Choices made along the way. Claude updates this.
+search-queue.md              ← What papers still need to be found, organized by section. Claude updates this.
 sources/                    ← Downloaded PDFs of cited papers.
 library/                    ← Papis reference library (YAML metadata + PDFs per folder).
 notes/                      ← Reading notes (one file per paper). Use templates/note.md format.
@@ -44,6 +45,7 @@ output/                     ← Generated PDFs, DOCX, HTML (git-ignored).
 templates/
   note.md                   ← Template for reading notes.
   section-draft.md          ← Template for section drafts.
+  search-queue.md           ← Template for the search queue.
 scripts/                    ← Helper scripts for batch operations.
 docs/                       ← Detailed tool documentation by workflow stage.
 ```
@@ -106,6 +108,31 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 - `make check` — Validate all tools are installed and working
 
 ## How to Do Common Tasks
+
+### Managing the search queue:
+
+The search queue (`search-queue.md`) tracks every paper the project still needs to find, organized by section. It's the research equivalent of a backlog — a persistent list of evidence gaps that survives across sessions.
+
+**When to add to the queue:**
+- After updating the outline with new arguments that need evidence
+- After reading a paper that references something you should follow up on
+- After a conversation where the user identifies a gap ("we need a paper about X")
+- After creating a section draft that reveals missing evidence (the "Gaps" section)
+
+**When to work the queue:**
+- When the user says "find papers" or "let's do some research" — check the queue first before asking what to search for
+- When you have downtime between tasks
+- At the start of a new session — read the queue to orient yourself on what's needed
+
+**How to work the queue:**
+1. Pick the highest-priority uncompleted search
+2. Run the search using `make search-py` or `make search-openalex` with the listed keywords
+3. If no good results, try the alt keywords
+4. Update the search entry with results, status, and any notes
+5. If a paper is found and downloaded, update status to `[x]` and link the reading note
+6. If a search fails, update status to `[-]` and note what was tried so you don't repeat it
+
+**Keep it current.** After every search session, update the queue. After creating a reading note, mark the corresponding search as done. The queue should always reflect the true state of what's been found and what's still missing.
 
 ### When the user asks you to find papers on a topic:
 1. Run `make search-py QUERY="the topic"` to get results with citation counts
@@ -240,11 +267,12 @@ If the user is working in **terminal only** (no VS Code), show file contents inl
 
 ## Project Memory — IMPORTANT
 
-Three files track the state of this research project across sessions. **Read all three before doing anything** at the start of every conversation:
+Four files track the state of this research project across sessions. **Read all four before doing anything** at the start of every conversation:
 
 1. **`outline.md`** — The structure of the paper: thesis, sections, research question. Update this when the user changes scope or reorganizes sections.
-2. **`progress.md`** — A checklist of what's done and what's not, plus a "Where We Left Off" note. Update this at every save point.
-3. **`decisions.md`** — Choices the user has made: scope, style, focus areas, things they've ruled out. Update this whenever a decision is made.
+2. **`search-queue.md`** — What papers still need to be found, organized by section. Update this after every search session. Check this first when the user wants to find papers.
+3. **`progress.md`** — A checklist of what's done and what's not, plus a "Where We Left Off" note. Update this at every save point.
+4. **`decisions.md`** — Choices the user has made: scope, style, focus areas, things they've ruled out. Update this whenever a decision is made.
 
 ### Rules for Updating Project Memory
 
