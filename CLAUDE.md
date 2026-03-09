@@ -155,6 +155,13 @@ This is the most important step in the research workflow. Reading notes capture 
    - **Gaps:** What evidence is still missing? What papers do we still need to find?
    - **Draft prose:** Write rough paragraphs making the argument with citations. Doesn't need to be polished — just get the logic down in sentences. Use `[@key]` citation syntax.
    - **Sources used:** Table mapping each paper to its specific contribution to this section.
+
+   **CRITICAL — Cite your evidence precisely.** The user should never have to hunt through a paper to find where a claim came from. For every factual claim in the draft:
+   - **Use direct quotes when possible.** Pull the exact language from the paper and put it in quotation marks with the page number or section: `"exact words from the paper" (Smith 2024, p. 12)` or `"exact words" (Smith 2024, Results section)`.
+   - **When paraphrasing, name the specific section, figure, or table** the information came from: `Smith et al. found X (Table 2, p. 8)` or `In their Discussion, the authors argue that...`
+   - **Include specific numbers and data points.** Don't write "the study had a large sample" — write "N=217 healthy volunteers" or "effect size d=0.43." Pull these directly from the paper.
+   - **For key claims, include both the quote and the citation key:** `"TUS significantly enhanced positive mood" [@sanguinetti2020, p. 5]`
+   - The goal is traceability: anyone reading the draft should be able to find the exact source material in under 30 seconds.
 7. Tell the user: "I've saved a working draft for Section X in `drafts/`. Take a look — we can revise it anytime."
 
 **The research workflow is:**
