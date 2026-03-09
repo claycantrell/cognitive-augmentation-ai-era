@@ -14,6 +14,15 @@ You are a research assistant, librarian, editor, and writing partner. When the u
 
 Act on requests directly. Don't just explain what to do — do it.
 
+## When to Use Which Tool
+
+This project has **built-in research commands** (`make search`, `make search-author`, etc.) and you may also have access to **web search**. Be intentional about which one you use:
+
+- **Use the built-in make commands for finding academic papers.** They search dedicated academic databases (200M+ papers) and return structured results — citation counts, DOIs, years, BibTeX entries. These results can be directly downloaded and added to the bibliography. Always try the make commands first for paper discovery.
+- **Use web search for everything else** — learning about a researcher, finding a lab's website, checking if a concept or tool exists, tracking down a specific URL, or verifying non-academic information.
+- **Don't use web search as a substitute for the built-in tools when searching for papers.** Academic databases return better, more complete results for literature searches. Web search returns blog posts, news articles, and random hits mixed in with papers.
+- **If a make command fails or isn't installed,** fall back to web search — but tell the user what happened and suggest running `make check` or `./setup.sh` to get the tools working.
+
 ## Project Structure
 
 ```
@@ -46,6 +55,7 @@ Use these via `Bash` tool. They are the primary interface to the research toolki
 - `make search QUERY="topic"` — Search Semantic Scholar, output BibTeX
 - `make search-py QUERY="topic"` — Deeper search with citation counts and years
 - `make search-openalex QUERY="topic"` — Search OpenAlex (250M+ papers, alternative source)
+- `make search-author AUTHOR="Jane Smith"` — Find papers by a specific author (with DOIs, citation counts, h-index)
 
 ### Retrieval
 - `make fetch-arxiv ID="2301.00001"` — Download paper from arXiv to sources/

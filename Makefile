@@ -71,6 +71,33 @@ search-openalex: ## Search OpenAlex (250M+ papers). Usage: make search-openalex 
 	    if doi: print(f'         DOI: {doi}'); \
 	print()"
 
+.PHONY: search-author
+search-author: ## Find papers by a specific author. Usage: make search-author AUTHOR="Jane Smith"
+	@if [ -z "$(AUTHOR)" ]; then \
+		echo "Error: AUTHOR is required. Usage: make search-author AUTHOR=\"Jane Smith\""; \
+		exit 1; \
+	fi
+	@python3 -c "\
+	from semanticscholar import SemanticScholar; \
+	sch = SemanticScholar(); \
+	authors = sch.search_author('$(AUTHOR)', limit=3); \
+	if not authors: \
+	    print('No authors found matching: $(AUTHOR)'); \
+	    exit(); \
+	author = authors[0]; \
+	print(f'\n--- Papers by {author.name} ---'); \
+	print(f'    Affiliations: {author.affiliations}'); \
+	print(f'    h-index: {author.hIndex}, Total citations: {author.citationCount}\n'); \
+	papers = sch.get_author_papers(author.authorId, limit=20); \
+	for p in papers: \
+	    cites = p.citationCount if p.citationCount else 0; \
+	    year = p.year if p.year else 'N/A'; \
+	    doi = ''; \
+	    if p.externalIds and 'DOI' in p.externalIds: \
+	        doi = f'  DOI: {p.externalIds[\"DOI\"]}'; \
+	    print(f'  [{year}] ({cites} cites) {p.title}{doi}'); \
+	print()"
+
 # ==============================================================================
 # RETRIEVAL
 # ==============================================================================
